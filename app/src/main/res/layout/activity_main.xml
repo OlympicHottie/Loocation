@@ -8,11 +8,17 @@
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
 
+    <TableRow
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp" />
+
     <TableLayout
         android:layout_width="368dp"
         android:layout_height="495dp"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        tools:layout_editor_absoluteY="9dp">
 
         <TableRow
             android:layout_width="match_parent"
@@ -23,6 +29,16 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Say Something"
+                android:inputType="textPersonName"
+                android:text="Send To World"
+                tools:text="Send To World" />
 
             <TextView
                 android:id="@+id/nameTextView"
@@ -39,7 +55,7 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/sendButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Button"
@@ -51,23 +67,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/editText3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Maria's text..."
-                android:inputType="textPersonName"
-                android:text="Name"
-                tools:layout_editor_absoluteX="85dp"
-                tools:layout_editor_absoluteY="118dp" />
+            <ListView
+                android:id="@+id/LocationsList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
         </TableRow>
     </TableLayout>
-
-    <TableRow
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp" />
 
 </android.support.constraint.ConstraintLayout>
