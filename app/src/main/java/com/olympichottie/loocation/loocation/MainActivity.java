@@ -9,11 +9,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    ArrayList<String> listItems=new ArrayList<String>();
+    ArrayList<String> messages = new ArrayList<String>();
     ArrayAdapter<String> adapter;
 
     @Override
@@ -22,23 +20,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ListView mListView = (ListView) findViewById(R.id.LocationsList);
-        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, messages);
         mListView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-
-        Button mClickButton1 = (Button) findViewById(R.id.sendButton);
-        mClickButton1.setOnClickListener(new View.OnClickListener() {
+        Button sendMessageButton = (Button) findViewById(R.id.sendButton);
+        sendMessageButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                addTextFromInputToList(v);
             }
         });
     }
 
-    public void addTextFromInputToList(View v){
+    public void addTextFromInputToList(View view){
         TextView textView = (TextView) findViewById(R.id.editText);
         String textToAdd = textView.getText().toString();
-        listItems.add(textToAdd);
+        messages.add(textToAdd);
         adapter.notifyDataSetChanged();
     }
 

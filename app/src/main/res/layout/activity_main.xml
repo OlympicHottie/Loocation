@@ -32,7 +32,7 @@
 
         <EditText
             android:id="@+id/editText"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/nameTextView"
             android:layout_centerHorizontal="true"
@@ -41,22 +41,27 @@
             android:inputType="textPersonName"
             android:text="Send To World"
             tools:text="Send To World"
-            tools:layout_editor_absoluteX="85dp"
+            tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="118dp" />
-            <ListView
-                android:id="@+id/LocationsList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
 
         <Button
             android:id="@+id/sendButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/editText3"
+            android:layout_below="@id/editText"
             android:layout_centerHorizontal="true"
             android:text="Send"
             tools:layout_editor_absoluteX="148dp"
             tools:layout_editor_absoluteY="231dp" />
+
+        <ListView
+            android:id="@+id/LocationsList"
+            android:layout_width="wrap_content"
+            android:layout_height="102dp"
+            android:layout_below="@id/sendButton"
+            android:layout_centerHorizontal="true"
+            tools:layout_editor_absoluteY="8dp"
+            tools:layout_editor_absoluteX="8dp" />
 
     </RelativeLayout>
 
