@@ -31,20 +31,25 @@
             tools:text="Loocation!" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/nameTextView"
             android:layout_centerHorizontal="true"
             android:ems="10"
-            android:hint="Maria's text..."
+            android:hint="Say Something"
             android:inputType="textPersonName"
-            android:text="Name"
+            android:text="Send To World"
+            tools:text="Send To World"
             tools:layout_editor_absoluteX="85dp"
             tools:layout_editor_absoluteY="118dp" />
+            <ListView
+                android:id="@+id/LocationsList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/sendButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/editText3"
