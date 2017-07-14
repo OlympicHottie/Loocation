@@ -1,19 +1,17 @@
 package com.olympichottie.loocation.messages;
 
-import android.app.Activity;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class MessageStore {
+public class MessageStore{
     public static final int MAX_NUMBER_OF_MESSAGES = 5;
-    ArrayList<String> messages = new ArrayList();
     ArrayAdapter<String> adapter;
+    ArrayList<String> messages;
 
-    public MessageStore(Activity activity, ListView listView) {
-        adapter = new ArrayAdapter(activity, android.R.layout.simple_list_item_1,messages);
-        listView.setAdapter(adapter);
+    public MessageStore(ArrayAdapter<String> adapter, ArrayList<String> messages) {
+        this.adapter = adapter;
+        this.messages = messages;
     }
 
     public void addMessage(Message message) {
