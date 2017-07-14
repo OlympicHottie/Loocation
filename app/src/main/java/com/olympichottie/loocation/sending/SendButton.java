@@ -1,24 +1,53 @@
 package com.olympichottie.loocation.sending;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.support.v4.app.ActivityCompat;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.olympichottie.loocation.activities.MainActivity;
 import com.olympichottie.loocation.messages.Message;
 import com.olympichottie.loocation.messages.MessageStore;
 import com.olympichottie.loocation.messages.TextMessage;
 
 public class SendButton {
     private Button buttonView;
+    private FusedLocationProviderClient mFusedLocationClient;
+    private MainActivity activity;
 
-    public SendButton(Button buttonView) {
+    public SendButton(MainActivity activity, Button buttonView) {
+        this.activity = activity;
         this.buttonView = buttonView;
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
+
     }
+
 
     public void setOnClickListener(TextView input, MessageStore messageStore) {
         buttonView.setOnClickListener(view -> {
-            Message message = new TextMessage(input.getText().toString());
-            messageStore.addMessage(message);
+            if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+            mFusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(activity, new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            // Got last known location. In some rare situations this can be null.
+                            if (location != null) {
+                                Message message = new TextMessage(String.valueOf(location.getLongitude()) +
+                                        ":" + String.valueOf(location.getLatitude()));
+                                messageStore.addMessage(message);
+                            }
+                        }
+                    });
         });
     }
+
+
 
 }
