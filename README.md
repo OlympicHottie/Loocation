@@ -1,6 +1,8 @@
 # Loocation
 Loocation app for Location based texting
 
+[![Build Status](https://travis-ci.org/OlympicHottie/Loocation.svg?branch=master)](https://travis-ci.org/OlympicHottie/Loocation)
+
 ## Dev Env
 * Android Studio
   
