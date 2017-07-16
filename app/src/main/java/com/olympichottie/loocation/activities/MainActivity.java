@@ -1,7 +1,11 @@
 package com.olympichottie.loocation.activities;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.location.Location;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -12,6 +16,7 @@ import android.widget.TextView;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.olympichottie.loocation.R;
+import com.olympichottie.loocation.location.LocationPermissionManager;
 import com.olympichottie.loocation.messages.MessageStore;
 import com.olympichottie.loocation.sending.SendButton;
 
@@ -25,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initLocationGetter(this);
+
         MessageStore messageStore = initMessageStore();
         initSendButton(messageStore);
-        requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 3444);
-
     }
 
     private void initSendButton(MessageStore messageStore) {
@@ -48,4 +53,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    private void initLocationGetter(Activity thisActivity) {
+        LocationPermissionManager locationPermissionManager = new LocationPermissionManager();
+        locationPermissionManager.requestPermission(this);
+        //FusedLocationProviderClient locationProviderClient = LocationServices.getFusedLocationProviderClient(thisActivity);
+    }
 }
