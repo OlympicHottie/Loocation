@@ -54,7 +54,7 @@ public class MessageStoreTest {
 
     private Message findMessageThatContains(ArrayList<Message> messages, String text) {
         for (Message message : messages) {
-            if (message.getMessageBody().contains(text)) {
+            if (message.getMessageContent().contains(text)) {
                 return message;
             }
         }

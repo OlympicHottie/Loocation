@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.olympichottie.loocation.R;
 import com.olympichottie.loocation.location.LocationPermissionManager;
 import com.olympichottie.loocation.messages.Message;
+import com.olympichottie.loocation.messages.MessageListAdapter;
 import com.olympichottie.loocation.messages.MessageStore;
 import com.olympichottie.loocation.sending.SendButton;
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private MessageStore initMessageStore() {
         ListView listView = (ListView) findViewById(R.id.LocationsList);
         ArrayList<Message> messages = new ArrayList();
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, messages);
+        ArrayAdapter<Message> adapter = new MessageListAdapter(this, messages);
         listView.setAdapter(adapter);
         return new MessageStore(adapter,messages);
     }

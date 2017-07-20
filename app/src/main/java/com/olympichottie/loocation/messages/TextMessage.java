@@ -12,7 +12,7 @@ public class TextMessage implements Message {
     }
 
     @Override
-    public String getMessageBody() {
+    public String getMessageContent() {
         return messageBody;
     }
 

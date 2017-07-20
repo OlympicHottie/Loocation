@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class MessageStore{
     public static final int MAX_NUMBER_OF_MESSAGES = 5;
-    ArrayAdapter<String> adapter;
+    ArrayAdapter<Message> adapter;
     ArrayList<Message> messages;
 
-    public MessageStore(ArrayAdapter<String> adapter, ArrayList<Message> messages) {
+    public MessageStore(ArrayAdapter<Message> adapter, ArrayList<Message> messages) {
         this.adapter = adapter;
         this.messages = messages;
     }
