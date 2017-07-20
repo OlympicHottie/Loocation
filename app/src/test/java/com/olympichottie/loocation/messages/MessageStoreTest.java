@@ -1,7 +1,9 @@
 package com.olympichottie.loocation.messages;
 
-import android.content.res.AssetFileDescriptor;
+import android.location.Location;
 import android.widget.ArrayAdapter;
+
+import com.olympichottie.loocation.location.SimpleLocation;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,45 +13,51 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MessageStoreTest {
     @Mock
     ArrayAdapter<String> adapter;
-    ArrayList<String> messages;
+    @Mock
+    Location androidLocation;
+    ArrayList<Message> messages;
     MessageStore messageStore;
 
     private static String validMessageBody = "Olympic Hottie";
 
     @Before
     public void setUp() throws Exception {
-        messages = new ArrayList<String>();
+        messages = new ArrayList<Message>() {};
         messageStore = new MessageStore(adapter, messages);
     }
 
     @Test
     public void MessageStore_AddValidMessage_MessageAppearsInListView() throws Exception {
-        Message message = new TextMessage(validMessageBody);
+        SimpleLocation location = new SimpleLocation(androidLocation);
+        Message message = new TextMessage(validMessageBody, location);
         messageStore.addMessage(message);
-        Assert.assertTrue(messages.contains(message.getMessageBody()));
+        Assert.assertTrue(messages.contains(message));
     }
 
     @Test
     public void MessageStore_AddMToFullListView_ListViewShouldTruncateValues() throws Exception {
+        SimpleLocation location = new SimpleLocation(androidLocation);
         int maxNumberOfMessages = MessageStore.MAX_NUMBER_OF_MESSAGES;
         for (int i = 0; i <= maxNumberOfMessages ; i++) {
-            Message message = new TextMessage(String.valueOf(i));
+            Message message = new TextMessage(String.valueOf(i), location);
             messageStore.addMessage(message);
         }
-        Assert.assertTrue(messages.contains(String.valueOf(maxNumberOfMessages)));
-        Assert.assertTrue(messages.contains(String.valueOf(maxNumberOfMessages-1)));
-        Assert.assertFalse(messages.contains(String.valueOf(0)));
+        Assert.assertNotNull(findMessageThatContains(messages, String.valueOf(maxNumberOfMessages)));
+        Assert.assertNotNull(findMessageThatContains(messages, String.valueOf(maxNumberOfMessages-1)));
+        Assert.assertNull(findMessageThatContains(messages, String.valueOf(0)));
     }
 
+    private Message findMessageThatContains(ArrayList<Message> messages, String text) {
+        for (Message message : messages) {
+            if (message.getMessageBody().contains(text)) {
+                return message;
+            }
+        }
+        return null;
+    }
 }

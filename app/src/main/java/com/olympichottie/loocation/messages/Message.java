@@ -1,11 +1,9 @@
 package com.olympichottie.loocation.messages;
 
-/**
- * Created by mminkin on 7/12/17.
- */
+import com.olympichottie.loocation.location.SimpleLocation;
 
 public interface Message {
     String getMessageBody();
-
+    SimpleLocation getLocation();
 }
 

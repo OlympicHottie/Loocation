@@ -9,6 +9,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.olympichottie.loocation.activities.MainActivity;
 import com.olympichottie.loocation.location.LocationPermissionManager;
+import com.olympichottie.loocation.location.SimpleLocation;
 import com.olympichottie.loocation.messages.Message;
 import com.olympichottie.loocation.messages.MessageStore;
 import com.olympichottie.loocation.messages.TextMessage;
@@ -38,8 +39,8 @@ public class SendButton {
                         public void onSuccess(Location location) {
                             // Got last known location. In some rare situations this can be null.
                             if (location != null) {
-                                Message message = new TextMessage(String.valueOf(location.getLongitude()) +
-                                        ":" + String.valueOf(location.getLatitude()));
+                                SimpleLocation simpleLocation = new SimpleLocation(location);
+                                Message message = new TextMessage(input.getText().toString(), simpleLocation);
                                 messageStore.addMessage(message);
                             }
                         }

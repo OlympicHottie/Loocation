@@ -1,16 +1,13 @@
 package com.olympichottie.loocation.location;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.location.Location;
-import android.support.v4.app.ActivityCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 
 public class LocationGetter {
 
     /**
-     * Provides the entry point to the Fused Location Provider API.
+     * Provides the entry point to the Fused SimpleLocation Provider API.
      */
     private FusedLocationProviderClient fusedLocationProviderClient;
 
